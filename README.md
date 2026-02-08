@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Reddit Data Extractor and Sentiment Analysis Project
 
 This project provides a Python-based tool to extract posts and comments from Reddit based on user-defined search terms and subreddits. The extracted data includes various objective metrics about posts and comments and is saved into CSV files for further analysis. While initially designed for analyzing sentiments related to trade and tariffs, the tool is flexible enough to extract data on any topic.
@@ -318,5 +317,4 @@ Obtendrás dos archivos CSV, uno para publicaciones y otro para comentarios. Est
 ## Un Par de Cosas a Tener en Cuenta
 
 * **Sé Amable con la API de Reddit**: Reddit permite unas 60 peticiones por minuto. Ya he añadido algunas pausas en el script para que no vaya demasiado rápido y te bloqueen.
-* **Es una Herramienta de Búsqueda**: Esta herramienta encuentra publicaciones basadas en tus palabras clave. No está diseñada para descargar *todas y cada una de las publicaciones* de un subreddit, sino las que son más relevantes para lo que buscas.
->>>>>>> 910b029fe674d65a83ab340d9fe676a2907ceed6
+* **Es una Herramienta de Búsqueda**: Esta herramienta encuentra publicaciones basadas en tus palabras clave. No está diseñada para descargar *todas y cada una de las publicaciones* de un subreddit, sino las que son más relevantes para lo que buscas
