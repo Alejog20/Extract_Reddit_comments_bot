@@ -1,125 +1,64 @@
-Extractor de Datos de Reddit sobre Aranceles Comerciales
-Este proyecto consiste en una herramienta de extracción de datos de Reddit para analizar las reacciones y discusiones sobre los aranceles del 25% impuestos por la administración Trump a México y Canadá. Utiliza la API REST de Reddit directamente mediante solicitudes HTTP, evitando dependencias como PRAW.
-🌟 Características
+# Reddit Data Extractor and Sentiment Analysis Project
 
-Extracción de posts y comentarios de múltiples subreddits
-Búsqueda por términos específicos relacionados con aranceles comerciales
-Autenticación OAuth2 con la API oficial de Reddit
-Limpieza automática de textos para análisis posterior
-Guardado de resultados en CSV con codificación adecuada
-Compatible con Google Colab para análisis interactivo
-Interfaz de usuario en terminal para fácil personalización
+This project provides a Python-based tool to extract posts and comments from Reddit based on user-defined search terms and subreddits. The extracted data includes various objective metrics about posts and comments and is saved into CSV files for further analysis. While initially designed for analyzing sentiments related to trade and tariffs, the tool is flexible enough to extract data on any topic.
 
-📋 Requisitos
+## Current Functionality
 
-Python 3.6 o superior
-Bibliotecas: requests, pandas, datetime, re, csv, json, base64, urllib
-Credenciales de API de Reddit (Client ID y Client Secret)
-Para usar en Google Colab: acceso a Google Drive
+The project currently consists of two main Python scripts:
 
-🔧 Configuración
-Obtener credenciales de Reddit:
+### `main.py`
+This file currently serves as a placeholder. When executed, it simply prints a welcome message:
+```
+Hello from analisis-sentimientos!
+```
+The primary execution logic for data extraction resides in `reddit_api_v2.py`.
 
-Visita https://www.reddit.com/prefs/apps
-Haz clic en "crear una aplicación" en la parte inferior
-Completa la información:
+### `reddit_api_v2.py`
+This script is the core of the data extraction process. It handles authentication with the Reddit API and fetches posts and comments.
 
-Nombre: ArancelesAnalysis (o el que prefieras)
-Tipo: Script
-Descripción: Extractor de datos para análisis de aranceles
-URL sobre la app: (puede dejarse en blanco)
-URI de redirección: http://localhost:8080
+**Key Features:**
+-   **Reddit API Authentication:** Uses OAuth2 to securely authenticate with Reddit using a Client ID and Client Secret.
+-   **Configurable Search:** Allows users to specify multiple search terms and target specific subreddits (or search across all Reddit).
+-   **Data Extraction:** Retrieves comprehensive data for Reddit posts (title, text, score, upvote ratio, creation time, number of comments, permalink, subreddit, author, etc.) and their associated comments (text, score, creation time, author, permalink, etc.).
+-   **Objective Metrics:** Extracts various objective metrics for both posts and comments, such as text length, word count, upvote ratio, score, and controversiality, without performing subjective analysis.
+-   **Text Cleaning:** Includes a utility function to clean extracted text by removing URLs and Reddit-specific formatting characters.
+-   **Google Drive Integration (Optional):** Designed to integrate with Google Drive (particularly useful in Google Colab environments) to automatically save extracted CSV files to a specified path. Falls back to a local directory if Google Drive is not available or cannot be mounted.
+-   **User-Friendly Input:** Prompts the user for necessary credentials, search parameters, and data limits via a command-line interface, offering default values and guidance.
+-   **CSV Export:** Saves the extracted posts and comments into separate CSV files, timestamped for easy organization.
 
+**How to Run `reddit_api_v2.py`:**
 
-Al crear la aplicación, obtendrás el Client ID (debajo del nombre) y Client Secret
+1.  **Prerequisites:**
+    *   Python 3.x installed.
+    *   **uv** package manager installed (`pip install uv`).
+    *   Install required Python packages using `uv`:
+        ```bash
+        uv pip install -r requirements.txt
+        # Or, to install based on pyproject.toml
+        uv sync
+        ```
+        (Note: While `praw` is listed in `requirements.txt`, this script directly uses `requests` for API interactions. `uv sync` will install dependencies defined in `pyproject.toml` and `uv.lock`.)
+2.  **Reddit API Credentials:**
+    *   You need a Reddit application's Client ID and Client Secret. Follow these steps to obtain them:
+        1.  Go to [https://www.reddit.com/prefs/apps](https://www.reddit.com/prefs/apps).
+        2.  Scroll down and click on "create another app...".
+        3.  Select "script" as the application type.
+        4.  Fill in the "name" (e.g., "SentimentAnalysisTool"), "description", and set "redirect uri" to `http://localhost:8080` (or any valid URL, it's not used for this script type but is required).
+        5.  Click "create app".
+        6.  Your Client ID will be shown below the app name. Your Client Secret will be next to the "secret" label.
+3.  **Execution:**
+    *   Run the script from your terminal:
+        ```bash
+        python reddit_api_v2.py
+        ```
+    *   The script will then guide you through providing the Client ID, Client Secret, search terms, subreddits, and limits.
+    *   Upon completion, CSV files containing the extracted posts and comments will be saved in the specified output directory (either Google Drive or a local `reddit_data` folder).
 
-🚀 Uso
-En Google Colab:
-
-Abre el notebook en Google Colab
-Ejecuta todas las celdas en orden
-Introduce las credenciales de la API cuando se soliciten
-Personaliza los términos de búsqueda y subreddits si lo deseas
-Los datos se guardarán en la ruta especificada de Google Drive
-
-Localmente:
-
-Clona este repositorio
-Instala las dependencias: pip install -r requirements.txt
-Ejecuta el script: python reddit_extractor.py
-Sigue las instrucciones en pantalla para ingresar tus credenciales y personalizar la búsqueda
-
-📊 Estructura de Datos
-Posts:
-
-post_id: Identificador único del post
-title: Título del post
-text: Contenido del post
-score: Puntuación (upvotes - downvotes)
-upvote_ratio: Proporción de votos positivos
-created_utc: Fecha de creación
-num_comments: Número de comentarios
-permalink: Enlace permanente al post
-subreddit: Comunidad donde se publicó
-author: Autor del post
-search_term: Término usado para encontrar este post
-title_clean: Versión limpia del título (sin URLs, caracteres especiales, etc.)
-text_clean: Versión limpia del contenido
-
-Comentarios:
-
-comment_id: Identificador único del comentario (generado internamente)
-post_id: ID del post al que pertenece
-text: Texto del comentario
-score: Puntuación del comentario
-created_utc: Fecha de creación
-author: Autor del comentario
-is_submitter: Indica si es el autor del post original
-permalink: Enlace permanente al comentario
-text_clean: Versión limpia del texto
-
-📁 Almacenamiento
-Por defecto, los datos se guardan en:
-Copiar/content/drive/MyDrive/Development/DataScience/Sentiment_Analysis/
-Los archivos generados son:
-
-reddit_posts_aranceles_YYYYMMDD_HHMM.csv: Posts extraídos
-reddit_comments_aranceles_YYYYMMDD_HHMM.csv: Comentarios extraídos
-
-⚠️ Limitaciones
-
-API de Reddit: Limite de 60 solicitudes por minuto
-El script incluye pausas para respetar estos límites
-La búsqueda está limitada a términos específicos y no recopila todos los posts de un subreddit
-
-🔍 Términos de búsqueda predeterminados
-
-"aranceles México"
-"aranceles Canadá"
-"Trump aranceles"
-"25% arancel"
-"TMEC aranceles"
-"tariffs Mexico Canada"
-
-🌐 Subreddits predeterminados
-
-Economics
-Politics
-worldnews
-news
-business
-mexico
-canada
-trade
-
-📊 Posibles análisis
-Con los datos obtenidos se puede realizar:
-
-Análisis de sentimiento sobre los aranceles
-Identificación de temas principales mediante modelado de tópicos
-Análisis comparativo entre la percepción de los aranceles a México vs. Canadá
-Evolución temporal de las reacciones
-Correlación entre sentimiento y puntuación de los posts/comentarios
-
-🤝 Contribuciones
-Las contribuciones son bienvenidas. Por favor, abre un issue primero para discutir los cambios que te gustaría realizar.
+## Future Enhancements
+This project is continuously evolving. Planned enhancements include:
+- Removing emojis from print statements for a cleaner CLI output.
+- Implementing advanced logging features for better traceability and debugging.
+- Integrating modern CLI display libraries (e.g., progress bars, animations) for an improved user experience, especially in environments like Git Bash.
+- Ensuring full script functionality and robustness.
+- Developing comprehensive sentiment analysis capabilities using the extracted data.
+- Improving error handling and user feedback.

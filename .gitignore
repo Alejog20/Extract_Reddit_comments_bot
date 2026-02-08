@@ -1,0 +1,5 @@
+*.txt
+*.log
+*.xlsx
+*.md
+!README.md
