@@ -68,7 +68,7 @@ This project is continuously evolving. Planned enhancements include:
 This project is a handy tool built to pull data from Reddit about pretty much any topic you can think of. Instead of using a big library like PRAW, it talks directly to Reddit's API using simple HTTP requests, which keeps things lightweight and easy to understand.
 
 I made this for anyone who wants to see what people are saying on Reddit—whether you're a researcher, a student, or just curious about public opinion. You can use the data you gather for all sorts of cool things, like finding out what people think about a new movie, tracking trends, or analyzing discussions on any subject.
-
+![Project's GUI](src/redditbot1.png)
 ---
 
 ## How It Works Under the Hood
@@ -84,6 +84,7 @@ At its core, this is a Python script that handles everything from start to finis
 * ***Neatly Organized Output***: It saves everything into two clean CSV files (one for posts, one for comments) that you can easily open in Excel or use for data analysis.
 * ***Works Great with Google Colab***: If you like working in the cloud, the script is set up to run smoothly in Google Colab and can save your data directly to your Google Drive.
 * ***Easy to Get Started***: A simple command-line interface walks you through the setup, asking for your login info and what you want to search for.
+![Advanced Options for Searching for Topic and Subreddit](src/redditbot2.png)
 
 ### Why You Might Find This Useful
 
@@ -123,16 +124,6 @@ Ready to give it a try? You'll just need Python 3.6 or higher.
 
 ### How to Use the Scraper
 
-#### In Google Colab (The Easy Way)
-
-1.  Open the script's notebook file in Google Colab.
-2.  Just run the cells in order.
-3.  It'll ask for your `Client ID` and `Client Secret`.
-4.  You can then enter your own search terms and subreddits or just use the defaults.
-5.  It will connect to your Google Drive and save the files there for you.
-
-#### On Your Own Computer
-
 1.  Download or clone the project files.
 2.  Install the libraries you'll need:
     ```bash
@@ -143,6 +134,8 @@ Ready to give it a try? You'll just need Python 3.6 or higher.
     python reddit_data_extractor.py
     ```
 4.  The script will guide you through the rest!
+
+![Script Running](src/redditbot3.png)
 
 ---
 
