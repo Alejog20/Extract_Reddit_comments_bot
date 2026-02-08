@@ -63,12 +63,14 @@ This project is continuously evolving. Planned enhancements include:
 - Developing comprehensive sentiment analysis capabilities using the extracted data.
 - Improving error handling and user feedback.
 =======
-# Reddit Data Scraper
+## Reddit Data Scraper
 
 This project is a handy tool built to pull data from Reddit about pretty much any topic you can think of. Instead of using a big library like PRAW, it talks directly to Reddit's API using simple HTTP requests, which keeps things lightweight and easy to understand.
 
 I made this for anyone who wants to see what people are saying on Reddit—whether you're a researcher, a student, or just curious about public opinion. You can use the data you gather for all sorts of cool things, like finding out what people think about a new movie, tracking trends, or analyzing discussions on any subject.
+
 ![Project's GUI](src/redditbot1.png)
+
 ---
 
 ## How It Works Under the Hood
