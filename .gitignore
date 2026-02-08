@@ -1,5 +1,8 @@
+reddit_data/
 *.txt
 *.log
 *.xlsx
 *.md
 !README.md
+*.venv
+*.env
