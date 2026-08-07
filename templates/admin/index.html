@@ -1,0 +1,6 @@
+{% extends "admin/index.html" %}
+
+{% block content %}
+<p><a href="{% url 'admin:reddit_data_analytics' %}">&#128202; View analytics dashboard</a></p>
+{{ block.super }}
+{% endblock %}

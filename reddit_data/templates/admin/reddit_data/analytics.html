@@ -1,0 +1,56 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<p><a href="{% url 'admin:index' %}">&larr; Back to admin</a></p>
+
+<h2>Most common pain points</h2>
+{% if top_pain_points %}
+<table>
+  <thead><tr><th>Pain point</th><th>Count</th></tr></thead>
+  <tbody>
+    {% for row in top_pain_points %}
+    <tr><td>{{ row.pain_point }}</td><td>{{ row.count }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No analyzed posts with a pain point yet.</p>
+{% endif %}
+
+<h2>Subreddits by high-intent posts</h2>
+{% if subreddit_ranking %}
+<table>
+  <thead><tr><th>Subreddit</th><th>High-intent count</th><th>Total analyzed</th><th>High-intent rate</th></tr></thead>
+  <tbody>
+    {% for row in subreddit_ranking %}
+    <tr>
+      <td>r/{{ row.subreddit }}</td>
+      <td>{{ row.high_intent_count }}</td>
+      <td>{{ row.total_analyzed }}</td>
+      <td>{{ row.high_intent_rate }}%</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No analyzed posts yet.</p>
+{% endif %}
+
+<h2>High-intent trend by month</h2>
+{% if time_trend %}
+<table>
+  <thead><tr><th>Month</th><th>Subreddit</th><th>High-intent count</th></tr></thead>
+  <tbody>
+    {% for row in time_trend %}
+    <tr>
+      <td>{{ row.month|date:"Y-m" }}</td>
+      <td>r/{{ row.subreddit }}</td>
+      <td>{{ row.count }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No high-intent posts yet.</p>
+{% endif %}
+{% endblock %}
